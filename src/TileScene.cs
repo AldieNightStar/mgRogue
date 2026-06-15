@@ -14,6 +14,7 @@ public abstract class TileScene : IDisposable
     protected GameWindow Window => _game.Window;
     protected ContentManager Content => _game.Content;
     protected SpriteBatch SpriteBatch => _game.Batch;
+    protected GameTime GameTime => _game.GameTime;
 
     protected Color BgColor {
         get => _game.BgColor;

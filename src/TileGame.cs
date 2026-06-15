@@ -12,6 +12,7 @@ public class TileGame : Game
     internal TileGraphics Tile;
     internal KeyListener Keys;
     internal Color BgColor = Color.CornflowerBlue;
+    internal GameTime GameTime;
 
     internal Vector2 FontSize;
     private SpriteFont _font;
@@ -55,6 +56,10 @@ public class TileGame : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
             Exit();
 
+        // Update Time
+        GameTime = gameTime;
+
+        // Keyboard
         var keyState = Keyboard.GetState();
         Keys.Update(keyState);
 
