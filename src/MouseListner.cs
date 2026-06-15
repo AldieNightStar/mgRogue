@@ -42,7 +42,7 @@ public class MouseListener
             {
                 _mouseUp(id);
             }
-            oldState = state;
+            _buttons[id] = state;
         }
     }
 
