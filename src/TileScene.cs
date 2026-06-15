@@ -15,7 +15,7 @@ public abstract class TileScene : IDisposable
     protected ContentManager Content => _game.Content;
     protected SpriteBatch SpriteBatch => _game.Batch;
     protected GameTime GameTime => _game.GameTime;
-    protected KeyListener Keys => _game._keyboard;
+    protected KeyListener Keyboard => _game._keyboard;
     protected MouseListener Mouse => _game._mouse;
     protected Vector2 MousePos => _game.MousePos;
 
