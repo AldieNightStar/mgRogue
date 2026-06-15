@@ -15,12 +15,16 @@ public abstract class TileScene : IDisposable
     protected ContentManager Content => _game.Content;
     protected SpriteBatch SpriteBatch => _game.Batch;
     protected GameTime GameTime => _game.GameTime;
+    protected KeyListener Keys => _game._keyboard;
+    protected MouseListener Mouse => _game._mouse;
+    protected Vector2 MousePos => _game.MousePos;
 
-    protected Color BgColor {
+    protected Color BgColor
+    {
         get => _game.BgColor;
         set => _game.BgColor = value;
     }
-    
+
     protected Vector2 ScreenSize => Tile.GetScreenSizeTiles(Window);
 
     protected SpriteFont Font
@@ -38,7 +42,13 @@ public abstract class TileScene : IDisposable
     public abstract void Init();
     public abstract void Draw(float dt);
     public abstract void Update(float dt);
+
     public abstract void OnKeyPress(Keys k);
     public abstract void OnKeyRelease(Keys k);
+
+    public abstract void OnMouseDown(int key);
+    public abstract void OnMouseUp(int key);
+    public abstract void OnMouseMove(Vector2 pos);
+
     public abstract void Dispose();
 }

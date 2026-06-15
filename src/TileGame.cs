@@ -10,9 +10,11 @@ public class TileGame : Game
     internal SpriteBatch Batch;
     internal TileScene Scene;
     internal TileGraphics Tile;
-    internal KeyListener Keys;
+    internal KeyListener _keyboard;
+    internal MouseListener _mouse;
     internal Color BgColor = Color.CornflowerBlue;
     internal GameTime GameTime;
+    internal Vector2 MousePos;
 
     internal Vector2 FontSize;
     private SpriteFont _font;
@@ -46,22 +48,28 @@ public class TileGame : Game
     {
         Batch = new SpriteBatch(GraphicsDevice);
         Tile = new TileGraphics(this, new Vector2(32, 32));
-        Keys = new KeyListener(Scene.OnKeyPress, Scene.OnKeyRelease);
+        
+        // Listeners
+        _keyboard = new KeyListener(Scene.OnKeyPress, Scene.OnKeyRelease);
+        _mouse = new MouseListener(this, Scene.OnMouseDown, Scene.OnMouseUp, (pos) =>
+        {
+            MousePos = pos;
+            Scene.OnMouseMove(pos);
+        });
 
         Scene.InitScene(this);
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
-            Exit();
-
         // Update Time
         GameTime = gameTime;
 
-        // Keyboard
+        // Input
         var keyState = Keyboard.GetState();
-        Keys.Update(keyState);
+        var mouseState = Mouse.GetState();
+        _keyboard.Update(keyState);
+        _mouse.Update(mouseState);
 
         var dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
         Scene.Update(dt);

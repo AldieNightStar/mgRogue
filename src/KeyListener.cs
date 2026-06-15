@@ -18,7 +18,7 @@ public class KeyListener
         _keys = new();
     }
 
-    public void Update(KeyboardState state)
+    public void Update(in KeyboardState state)
     {
         var newKeys = state.GetPressedKeys().ToHashSet();
         foreach (var key in newKeys)
@@ -39,4 +39,10 @@ public class KeyListener
             }
         }
     }
+
+    public bool IsPressed(Keys k) => _keys.Contains(k);
+
+    public bool IsCtrl => IsPressed(Keys.LeftControl) || IsPressed(Keys.RightControl);
+    public bool IsShift => IsPressed(Keys.LeftShift) || IsPressed(Keys.RightShift);
+    public bool IsAlt => IsPressed(Keys.LeftAlt) || IsPressed(Keys.RightAlt);
 }

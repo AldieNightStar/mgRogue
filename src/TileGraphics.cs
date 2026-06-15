@@ -56,4 +56,11 @@ public class TileGraphics
         size.Floor();
         return size;
     }
+
+    public Vector2 GetTileFromGlobal(Vector2 globalPos)
+    {
+        var pos = globalPos / Size;
+        pos.Floor();
+        return pos;
+    }
 }
