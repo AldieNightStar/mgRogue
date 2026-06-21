@@ -42,7 +42,7 @@ public class TileGraphics
         }
     }
 
-    public void DrawTile(Texture2D texture, Vector2 pos, Color? color = null, Rectangle? srcRect = null, Vector2? scale = null, bool center = false, Rotation rotate = Rotation.Up, float rotation=0)
+    public void DrawTile(Texture2D texture, Vector2 pos, Color? color = null, Rectangle? srcRect = null, Vector2? scale = null, bool center = false, Rotation rotate = Rotation.Up, float rotation = 0)
     {
         var drawColor = color.HasValue ? color.Value : Color.White;
         var newPos = pos * Size;
@@ -52,8 +52,8 @@ public class TileGraphics
         var y = (int)newPos.Y;
         var w = (int)(Size.X * pscale.X);
         var h = (int)(Size.Y * pscale.Y);
-        var halfW = w / 2; 
-        var halfH = h / 2;        
+        var halfW = w / 2;
+        var halfH = h / 2;
         var origin = _getOrigin(center, texture, srcRect);
 
         if (center)
@@ -85,14 +85,14 @@ public class TileGraphics
 
     private Vector2 _getOrigin(bool center, Texture2D texture, in Rectangle? srcRect)
     {
-        if (!center) return new Vector2(0, 0);
+        if (!center) return Vector2.Zero;
 
         if (srcRect == null)
         {
             var bounds = texture.Bounds;
-            return new Vector2(bounds.Width/2, bounds.Height/2);
+            return new Vector2(bounds.Width / 2, bounds.Height / 2);
         }
-        return new Vector2(srcRect.Value.Width/2, srcRect.Value.Height/2);
+        return new Vector2(srcRect.Value.Width / 2, srcRect.Value.Height / 2);
     }
 
     private (int w, int h, float rotation) _getSwappedSizeBasedOnRotation(int w, int h, Rotation r)
