@@ -29,7 +29,7 @@ public class TileGame : Game
         }
     }
 
-    public TileGame(string title, TileScene scene)
+    public TileGame(string title, TileScene scene, int width=800, int height=600)
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
@@ -37,6 +37,8 @@ public class TileGame : Game
         Scene = scene;
         Window.Title = title;
         Window.AllowUserResizing = true;
+        _graphics.PreferredBackBufferWidth = width;
+        _graphics.PreferredBackBufferHeight = height;
     }
 
     protected override void Initialize()
