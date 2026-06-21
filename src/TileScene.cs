@@ -33,7 +33,7 @@ public abstract class TileScene : IDisposable
         set => _game.Font = value;
     }
 
-    internal void InitScene(TileGame tileGame)
+    public void InitScene(TileGame tileGame)
     {
         _game = tileGame;
         Init();
